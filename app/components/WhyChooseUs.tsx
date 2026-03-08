@@ -1,80 +1,84 @@
-import { MapPin, Shield, PoundSterling, Clock, Gem, Sparkles } from 'lucide-react';
+import { MapPinned, ShieldCheck, PoundSterling, Clock, Hammer, ThumbsUp } from "lucide-react";
 
 const reasons = [
   {
-    icon: MapPin,
-    title: 'Local Nottingham Specialists',
-    description: 'Based in Nottingham, we know the local area and can respond quickly to any roofing need.',
+    icon: MapPinned,
+    title: "Local Nottingham Specialists",
+    text: "We\u2019re based right here in Nottingham. We know the local properties, the weather, and what works best for homes in this area.",
+    num: "01",
   },
   {
-    icon: Shield,
-    title: 'Fully Insured Workmanship',
-    description: 'All our roofing work is fully insured, giving you complete peace of mind.',
+    icon: ShieldCheck,
+    title: "Fully Insured",
+    text: "Complete peace of mind with full public liability insurance on every single job we carry out.",
+    num: "02",
   },
   {
     icon: PoundSterling,
-    title: 'Honest, Fair Pricing',
-    description: 'No hidden costs or surprises. We provide clear quotes upfront before any work begins.',
+    title: "Honest Quotes",
+    text: "No hidden extras, no surprise charges. We give you a clear, written quote upfront and stick to it.",
+    num: "03",
   },
   {
     icon: Clock,
-    title: 'Prompt Response Times',
-    description: 'We aim to respond to all enquiries within hours, not days. Emergency callouts available.',
+    title: "Prompt Service",
+    text: "We know roof problems can\u2019t wait. Most repairs are completed within 24\u201348 hours of your go-ahead.",
+    num: "04",
   },
   {
-    icon: Gem,
-    title: 'Quality Materials',
-    description: 'We only use trusted, high-quality roofing materials from reputable UK suppliers.',
+    icon: Hammer,
+    title: "Quality Materials",
+    text: "We only use materials from trusted UK suppliers. Every job is built to last, with a workmanship guarantee included.",
+    num: "05",
   },
   {
-    icon: Sparkles,
-    title: 'Reliable & Tidy Service',
-    description: 'We treat every property with respect, leaving the site clean and tidy after every job.',
+    icon: ThumbsUp,
+    title: "Reliable & Tidy",
+    text: "We turn up when we say we will, keep you informed throughout, and always leave your property clean and tidy.",
+    num: "06",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          {/* Left - Image */}
-          <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
-              alt="Professional roofer at work"
-              className="rounded-2xl shadow-lg w-full object-cover h-[400px] md:h-[500px]"
-            />
-            <div className="absolute -bottom-5 -right-5 bg-amber-500 text-slate-900 rounded-xl p-5 shadow-lg hidden md:block">
-              <div className="text-3xl font-extrabold">15+</div>
-              <div className="text-sm font-semibold">Years Serving<br />Nottingham</div>
-            </div>
+    <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      {/* Subtle background accent */}
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-teal-500/3 rounded-full blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-10 h-[3px] bg-teal-500 rounded-full" />
+            <span className="text-teal-600 font-bold text-sm uppercase tracking-wider">Why Us</span>
+            <div className="w-10 h-[3px] bg-teal-500 rounded-full" />
           </div>
+          <h2 className="text-3xl md:text-[2.75rem] font-extrabold text-navy-900 mb-5">
+            Why Choose RH Roofing?
+          </h2>
+          <p className="text-steel-600 max-w-2xl mx-auto text-[15px] leading-relaxed">
+            Homeowners across Nottingham trust us because we do what we say, charge what we quote, and stand behind every job.
+          </p>
+        </div>
 
-          {/* Right - Content */}
-          <div>
-            <span className="text-amber-600 font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
-              Dependable Roofers You Can Trust
-            </h2>
-            <p className="text-slate-600 text-lg mb-8">
-              Choosing the right roofer matters. We&apos;re committed to providing honest, professional roofing services that Nottingham homeowners can rely on.
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-5">
-              {reasons.map((reason) => (
-                <div key={reason.title} className="flex gap-3">
-                  <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center shrink-0">
-                    <reason.icon size={20} className="text-amber-600" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reasons.map((r) => {
+            const Icon = r.icon;
+            return (
+              <div
+                key={r.title}
+                className="group relative bg-steel-50 hover:bg-navy-900 rounded-2xl p-7 transition-all duration-500 border border-steel-100 hover:border-navy-800"
+              >
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-12 h-12 bg-teal-500/10 group-hover:bg-teal-500/20 rounded-xl flex items-center justify-center transition-colors">
+                    <Icon className="w-6 h-6 text-teal-500" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900 text-sm mb-1">{reason.title}</h3>
-                    <p className="text-slate-500 text-xs leading-relaxed">{reason.description}</p>
-                  </div>
+                  <span className="text-steel-200 group-hover:text-steel-700 font-extrabold text-3xl transition-colors">{r.num}</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                <h3 className="font-bold text-navy-900 group-hover:text-white text-lg mb-2.5 transition-colors">{r.title}</h3>
+                <p className="text-steel-600 group-hover:text-steel-400 leading-relaxed text-[14px] transition-colors">{r.text}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

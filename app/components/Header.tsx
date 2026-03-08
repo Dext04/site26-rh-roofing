@@ -1,59 +1,54 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { Phone, Menu, X, ChevronRight } from 'lucide-react';
+"use client";
+
+import { useState, useEffect } from "react";
+import { Phone, Menu, X, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#services', label: 'Services' },
-  { href: '#about', label: 'About' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#areas', label: 'Areas We Cover' },
-  { href: '#contact', label: 'Contact' },
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Areas We Cover", href: "#areas" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handler = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-slate-900/95 backdrop-blur-md shadow-lg'
-          : 'bg-slate-900'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-navy-950/98 backdrop-blur-md shadow-2xl shadow-black/20"
+          : "bg-transparent"
       }`}
     >
-      {/* Top bar */}
-      <div className="hidden md:block bg-slate-950 text-slate-300 text-sm">
-        <div className="max-w-7xl mx-auto px-4 py-1.5 flex justify-between items-center">
-          <span>Trusted Roofers Serving Nottingham & Nottinghamshire</span>
-          <a
-            href="tel:01159826754"
-            className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-semibold transition-colors"
-          >
-            <Phone size={14} />
-            0115 982 6754
-          </a>
-        </div>
-      </div>
-
-      {/* Main nav */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-18">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-18 md:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
-              <span className="text-slate-900 font-black text-lg">RH</span>
+          <a href="#home" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="w-11 h-11 bg-teal-500 rounded-xl flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform duration-300">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M3 21h18M3 21V10l9-7 9 7v11" strokeLinejoin="round" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-navy-950" />
             </div>
-            <div className="leading-tight">
-              <span className="text-white font-bold text-lg block">RH Roofing</span>
-              <span className="text-amber-400 text-xs font-medium tracking-wide hidden sm:block">NOTTINGHAM</span>
+            <div className="leading-none">
+              <span className="text-white font-extrabold text-lg tracking-tight block">
+                RH Roofing
+              </span>
+              <span className="text-teal-400 text-[10px] font-bold uppercase tracking-[0.2em]">
+                Nottingham
+              </span>
             </div>
           </a>
 
@@ -63,76 +58,67 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-white/5"
+                className="text-[13px] font-medium text-steel-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right side */}
-          <div className="flex items-center gap-3">
-            <a
-              href="tel:01159826754"
-              className="hidden md:flex items-center gap-2 text-white font-semibold"
-            >
-              <div className="w-9 h-9 bg-amber-500 rounded-full flex items-center justify-center">
-                <Phone size={16} className="text-slate-900" />
-              </div>
-              <span className="text-sm">0115 982 6754</span>
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center gap-5">
+            <a href="tel:01159826754" className="flex items-center gap-2 text-white font-semibold text-sm group/phone">
+              <span className="w-8 h-8 bg-teal-500/20 rounded-lg flex items-center justify-center group-hover/phone:bg-teal-500/30 transition-colors">
+                <Phone className="w-4 h-4 text-teal-400" />
+              </span>
+              <span className="text-steel-300 group-hover/phone:text-white transition-colors">0115 982 6754</span>
             </a>
             <a
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-sm px-5 py-2.5 rounded-lg transition-colors"
+              className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all hover:shadow-lg hover:shadow-teal-500/25 flex items-center gap-1.5"
             >
               Get Free Quote
-              <ChevronRight size={16} />
+              <ArrowUpRight className="w-4 h-4" />
             </a>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white p-2"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
+
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
       {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-slate-900 border-t border-slate-700/50">
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+      {mobileOpen && (
+        <div className="lg:hidden bg-navy-950 border-t border-white/5 animate-fade-in">
+          <nav className="flex flex-col px-4 py-5 gap-0.5">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors"
+                onClick={() => setMobileOpen(false)}
+                className="text-steel-300 font-medium py-3 px-4 rounded-xl hover:bg-white/5 hover:text-white transition-all"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-3 space-y-2">
-              <a
-                href="tel:01159826754"
-                className="flex items-center justify-center gap-2 bg-white/10 text-white font-semibold py-3 rounded-lg"
-              >
-                <Phone size={18} />
-                0115 982 6754
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-1.5 bg-amber-500 text-slate-900 font-bold py-3 rounded-lg"
-              >
-                Get Free Quote
-                <ChevronRight size={16} />
-              </a>
-            </div>
-          </div>
+            <hr className="my-3 border-white/5" />
+            <a href="tel:01159826754" className="flex items-center gap-3 text-white font-bold py-3 px-4">
+              <Phone className="w-5 h-5 text-teal-400" /> 0115 982 6754
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMobileOpen(false)}
+              className="bg-teal-500 text-white font-bold py-3.5 px-6 rounded-xl text-center mt-2"
+            >
+              Get Free Quote
+            </a>
+          </nav>
         </div>
       )}
     </header>

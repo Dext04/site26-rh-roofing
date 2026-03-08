@@ -1,73 +1,91 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 const quickLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#services', label: 'Services' },
-  { href: '#about', label: 'About Us' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' },
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "About Us", href: "#about" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Areas We Cover", href: "#areas" },
+  { label: "Contact", href: "#contact" },
 ];
 
-const serviceLinks = [
-  'Roof Repairs',
-  'New Roofs',
-  'Flat Roofing',
-  'Emergency Repairs',
-  'Chimney Repairs',
-  'Fascias & Guttering',
-  'Leadwork',
-  'Roof Surveys',
+const services = [
+  "Roof Repairs",
+  "New Roofs",
+  "Flat Roofing",
+  "Emergency Roofing",
+  "Chimney Repairs",
+  "Fascias & Guttering",
+  "Leadwork",
+  "Roof Inspections",
 ];
 
-const areaLinks = [
-  'Nottingham', 'West Bridgford', 'Beeston', 'Arnold',
-  'Carlton', 'Mapperley', 'Hucknall', 'Long Eaton',
-];
+const areas = ["Nottingham", "West Bridgford", "Beeston", "Arnold", "Carlton", "Mapperley", "Hucknall", "Mansfield"];
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-slate-400">
-      <div className="max-w-7xl mx-auto px-4 py-14">
+    <footer className="bg-navy-950">
+      {/* Top CTA strip */}
+      <div className="border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="text-white font-extrabold text-xl mb-1">Ready to get started?</h3>
+            <p className="text-steel-500 text-sm">Get a free, no-obligation quote for your roofing project today.</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="tel:01159826754" className="flex items-center gap-2 text-steel-300 hover:text-teal-400 font-semibold text-sm transition-colors">
+              <Phone className="w-4 h-4" /> 0115 982 6754
+            </a>
+            <a
+              href="#contact"
+              className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all flex items-center gap-1.5"
+            >
+              Get Free Quote <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main footer */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center">
-                <span className="text-slate-900 font-black text-sm">RH</span>
+            <div className="flex items-center gap-2.5 mb-6">
+              <div className="w-10 h-10 bg-teal-500 rounded-xl flex items-center justify-center">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M3 21h18M3 21V10l9-7 9 7v11" strokeLinejoin="round" strokeLinecap="round" />
+                </svg>
               </div>
-              <div>
-                <span className="text-white font-bold block text-sm">RH Roofing</span>
-                <span className="text-amber-400 text-xs">NOTTINGHAM</span>
+              <div className="leading-none">
+                <span className="text-white font-extrabold block">RH Roofing</span>
+                <span className="text-teal-400 text-[10px] font-bold uppercase tracking-[0.2em]">Nottingham</span>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-5">
-              Trusted local roofers serving Nottingham and Nottinghamshire for over 15 years. Professional, reliable roofing services for homes and small businesses.
+            <p className="text-steel-500 text-sm leading-relaxed mb-6">
+              Trusted local roofers serving Nottingham &amp; Nottinghamshire. Fully insured,
+              free quotes, quality workmanship on every job.
             </p>
-            <div className="space-y-2.5">
-              <a href="tel:01159826754" className="flex items-center gap-2 text-sm hover:text-amber-400 transition-colors">
-                <Phone size={14} />
-                0115 982 6754
+            <div className="space-y-2.5 text-sm">
+              <a href="tel:01159826754" className="flex items-center gap-2.5 text-steel-500 hover:text-teal-400 transition-colors">
+                <Phone className="w-4 h-4" /> 0115 982 6754
               </a>
-              <a href="mailto:info@rhroofing-nottingham.co.uk" className="flex items-center gap-2 text-sm hover:text-amber-400 transition-colors">
-                <Mail size={14} />
-                info@rhroofing-nottingham.co.uk
+              <a href="mailto:info@rhroofing-nottingham.co.uk" className="flex items-center gap-2.5 text-steel-500 hover:text-teal-400 transition-colors">
+                <Mail className="w-4 h-4" /> info@rhroofing-nottingham.co.uk
               </a>
-              <div className="flex items-center gap-2 text-sm">
-                <MapPin size={14} />
-                Nottingham, Nottinghamshire
+              <div className="flex items-center gap-2.5 text-steel-500">
+                <MapPin className="w-4 h-4" /> Nottingham, Nottinghamshire
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-bold text-sm mb-4">Quick Links</h3>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm hover:text-amber-400 transition-colors">
-                    {link.label}
-                  </a>
+            <h4 className="font-bold text-white mb-6 text-sm uppercase tracking-wider">Quick Links</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="text-steel-500 text-sm hover:text-teal-400 transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
@@ -75,13 +93,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-bold text-sm mb-4">Our Services</h3>
-            <ul className="space-y-2.5">
-              {serviceLinks.map((service) => (
-                <li key={service}>
-                  <a href="#services" className="text-sm hover:text-amber-400 transition-colors">
-                    {service}
-                  </a>
+            <h4 className="font-bold text-white mb-6 text-sm uppercase tracking-wider">Our Services</h4>
+            <ul className="space-y-3">
+              {services.map((s) => (
+                <li key={s}>
+                  <a href="#services" className="text-steel-500 text-sm hover:text-teal-400 transition-colors">{s}</a>
                 </li>
               ))}
             </ul>
@@ -89,13 +105,11 @@ export default function Footer() {
 
           {/* Areas */}
           <div>
-            <h3 className="text-white font-bold text-sm mb-4">Areas We Cover</h3>
-            <ul className="space-y-2.5">
-              {areaLinks.map((area) => (
-                <li key={area}>
-                  <a href="#areas" className="text-sm hover:text-amber-400 transition-colors">
-                    {area}
-                  </a>
+            <h4 className="font-bold text-white mb-6 text-sm uppercase tracking-wider">Areas We Cover</h4>
+            <ul className="space-y-3">
+              {areas.map((a) => (
+                <li key={a}>
+                  <a href="#areas" className="text-steel-500 text-sm hover:text-teal-400 transition-colors">{a}</a>
                 </li>
               ))}
             </ul>
@@ -104,14 +118,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} RH Roofing Nottingham. All rights reserved.
-          </p>
-          <p className="text-xs text-slate-600">
-            Fully insured roofing contractors serving Nottingham & Nottinghamshire
-          </p>
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-steel-600">
+          <p>&copy; {new Date().getFullYear()} RH Roofing Nottingham. All rights reserved.</p>
+          <p>Trusted roofers in Nottingham &amp; Nottinghamshire</p>
         </div>
       </div>
     </footer>

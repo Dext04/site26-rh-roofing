@@ -1,25 +1,40 @@
-'use client';
-import { Phone } from 'lucide-react';
-import { useState, useEffect } from 'react';
+"use client";
+
+import { Phone } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function FloatingCTA() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handler = () => setVisible(window.scrollY > 500);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
   }, []);
 
   if (!visible) return null;
 
   return (
-    <a
-      href="tel:01159826754"
-      className="fixed bottom-6 right-6 z-40 md:hidden bg-amber-500 hover:bg-amber-600 text-slate-900 w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-amber-500/30 transition-all"
-      aria-label="Call us"
-    >
-      <Phone size={24} />
-    </a>
+    <>
+      {/* Mobile floating call button */}
+      <a
+        href="tel:01159826754"
+        className="fixed bottom-6 right-6 z-50 md:hidden bg-teal-500 hover:bg-teal-600 text-white w-15 h-15 rounded-2xl flex items-center justify-center shadow-2xl shadow-teal-500/30 transition-all pulse-glow"
+        aria-label="Call RH Roofing"
+      >
+        <Phone className="w-6 h-6" />
+      </a>
+
+      {/* Desktop sticky CTA */}
+      <div className="fixed bottom-6 right-6 z-50 hidden md:block animate-slide-up">
+        <a
+          href="#contact"
+          className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-6 py-3.5 rounded-2xl shadow-2xl shadow-teal-500/25 transition-all flex items-center gap-2 text-sm hover:-translate-y-0.5"
+        >
+          <Phone className="w-4 h-4" />
+          Get Free Quote
+        </a>
+      </div>
+    </>
   );
 }
